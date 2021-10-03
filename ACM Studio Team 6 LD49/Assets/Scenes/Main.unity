@@ -480,6 +480,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1052054621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1052054622}
+  m_Layer: 0
+  m_Name: Launcher Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1052054622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1052054621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.76, y: 0.12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2005602315}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1487575819
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,6 +663,7 @@ GameObject:
   - component: {fileID: 2005602313}
   - component: {fileID: 2005602317}
   - component: {fileID: 2005602316}
+  - component: {fileID: 2005602318}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -740,6 +771,7 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 1487575820}
+  - {fileID: 1052054622}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -755,8 +787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 849280e8ad772124dad48d468b2b3a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 200
-  groundCheckDepth: 0.01
+  jumpHeight: 2
   characterFeet: {fileID: 1487575820}
 --- !u!114 &2005602317
 MonoBehaviour:
@@ -773,3 +804,17 @@ MonoBehaviour:
   maxSpeed: 5
   currentSpeed: 0
   smoothTime: 0.1
+--- !u!114 &2005602318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005602311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4972c0839b3735448a1f9e212529dc42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 2243570142063683193, guid: 70012f636c934fd4baa80fb5b6c75073, type: 3}
+  shootDirection: {fileID: 1052054622}
