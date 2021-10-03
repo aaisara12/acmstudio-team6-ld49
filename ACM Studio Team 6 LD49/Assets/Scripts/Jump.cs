@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
+    const float GRAVITY = 9.8f;
+
     ///////////////
     // Inputs
     ///////////////
 
-    [SerializeField] float jumpForce = 100;
-    [SerializeField] float groundCheckDepth = 0.5f;
-    [SerializeField] float jumpCooldown = 0.5f;
+    [SerializeField] float jumpHeight = 3;
+    float jumpCooldown = 0.5f;
+    float groundCheckDepth = 0.1f;
+    
+    
+    // Calculate the jump speed needed to reach the specified jump height
+    float jumpSpeed => Mathf.Sqrt(2 * GRAVITY * jumpHeight);
 
 
 
@@ -56,7 +62,7 @@ public class Jump : MonoBehaviour
         Gizmos.DrawWireCube(characterFeet.position + (Vector3.down * groundCheckDepth/2), new Vector3(1, groundCheckDepth, 0));
     }
 
-    // Problem: We don't wan
+
     void FixedUpdate()
     {
         // If the player has requested to jump and they are not falling (velocities can cancel in weird ways)
@@ -65,7 +71,8 @@ public class Jump : MonoBehaviour
             // If it
             if(Time.time - lastJumpTime > jumpCooldown)
             {
-                rb.AddForce(Vector2.up * jumpForce);
+                //rb.AddForce(Vector2.up * jumpForce);
+                rb.velocity += Vector2.up * jumpSpeed;
                 lastJumpTime = Time.time;
             }
             hasPressedJump = false;
