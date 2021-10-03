@@ -11,7 +11,7 @@ public class Jump : MonoBehaviour
     ///////////////
 
     [SerializeField] float jumpHeight = 3;
-    float jumpCooldown = 0.5f;
+    float jumpCooldown = 0.1f;
     float groundCheckDepth = 0.1f;
     
     
@@ -36,6 +36,10 @@ public class Jump : MonoBehaviour
     bool isGrounded = false;
     float lastJumpTime = 0;
 
+    bool hasDoubleJumped = false;
+
+    bool isHardGrounded => isGrounded && rb.velocity.y < 0.1f;
+
 
     void Awake()
     {
@@ -47,10 +51,17 @@ public class Jump : MonoBehaviour
     void Update()
     {
         // If we're touching the ground and haven't tried to jump for at least 0.1 seconds (prevent spamming) and we're pressing the jump key
-        if(isGrounded && Input.GetKey(KeyCode.Space))
+        if(
+            (isGrounded && Input.GetKey(KeyCode.Space)) ||
+            (!isGrounded && Input.GetKeyDown(KeyCode.Space) && !hasDoubleJumped)
+        )   
         {
             hasPressedJump = true;
         }
+
+        // If we're touching the ground and have a stabilized resting velocity and have exhausted our double jump
+        if(isHardGrounded && hasDoubleJumped)
+            hasDoubleJumped = false;
             
         // Check if the player is touching the ground
         isGrounded = Physics2D.BoxCast(characterFeet.position, new Vector2(1, 0.01f), 0, Vector2.down, groundCheckDepth, LayerMask.GetMask("Ground"));
@@ -65,18 +76,25 @@ public class Jump : MonoBehaviour
 
     void FixedUpdate()
     {
-        // If the player has requested to jump and they are not falling (velocities can cancel in weird ways)
-        if(hasPressedJump && rb.velocity.y >= 0)
+        // If the player has requested to jump
+        if(hasPressedJump)
         {
-            // If it
+            // If it's been past the jump cooldown
             if(Time.time - lastJumpTime > jumpCooldown)
             {
-                //rb.AddForce(Vector2.up * jumpForce);
-                rb.velocity += Vector2.up * jumpSpeed;
+                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 lastJumpTime = Time.time;
+
+                // If we're jumping while in the air, we have double jumped
+                if(!isGrounded)
+                    hasDoubleJumped = true;
             }
+
+            // We have successfully processed the jump request
             hasPressedJump = false;
             
         }
+
+        
     }
 }
