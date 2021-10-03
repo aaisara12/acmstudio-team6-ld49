@@ -16,7 +16,7 @@ public class Jump : MonoBehaviour
     
     
     // Calculate the jump speed needed to reach the specified jump height
-    float jumpSpeed => Mathf.Sqrt(2 * GRAVITY * jumpHeight);
+    float jumpSpeed => Mathf.Sqrt(2 * GRAVITY * rb.gravityScale * jumpHeight);
 
 
 
