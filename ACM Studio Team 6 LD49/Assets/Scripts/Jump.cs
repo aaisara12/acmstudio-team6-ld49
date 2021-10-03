@@ -4,14 +4,38 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
+    ///////////////
+    // Inputs
+    ///////////////
+
     [SerializeField] float jumpForce = 100;
+    [SerializeField] float groundCheckDepth = 0.5f;
+    [SerializeField] float jumpCooldown = 0.5f;
+
+
+
+    ///////////////
+    // References
+    ///////////////
+
+    [SerializeField] Transform characterFeet;
+    Rigidbody2D rb;
+
+
+    /////////////
+    // Data
+    /////////////
 
     bool hasPressedJump = false;
     bool isGrounded = false;
-    [SerializeField] float groundCheckDepth = 0.5f;
-    [SerializeField] Transform characterFeet;
-
     float lastJumpTime = 0;
+
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -35,12 +59,13 @@ public class Jump : MonoBehaviour
     // Problem: We don't wan
     void FixedUpdate()
     {
-        if(hasPressedJump)
+        // If the player has requested to jump and they are not falling (velocities can cancel in weird ways)
+        if(hasPressedJump && rb.velocity.y >= 0)
         {
-            if(Time.time - lastJumpTime > 0.5f)
+            // If it
+            if(Time.time - lastJumpTime > jumpCooldown)
             {
-                Debug.Log("Jumping");
-                GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce);
+                rb.AddForce(Vector2.up * jumpForce);
                 lastJumpTime = Time.time;
             }
             hasPressedJump = false;
