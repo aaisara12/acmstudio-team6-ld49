@@ -348,6 +348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 279907706}
   - component: {fileID: 279907705}
+  - component: {fileID: 279907707}
   m_Layer: 0
   m_Name: Body (Office)
   m_TagString: Untagged
@@ -395,7 +396,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: bd3cb4af8406d4436a2ae8c2aafe1f8d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d6147127710a1644a5acb3987b02aad, type: 3}
   m_Color: {r: 1, g: 0.8083568, b: 0.6264151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -415,11 +416,30 @@ Transform:
   m_GameObject: {fileID: 279907704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.41435, y: 0.41435, z: 0.41435}
   m_Children: []
   m_Father: {fileID: 2005602315}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &279907707
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 279907704}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0fad0e0a06c33b2438f4ed4adf5a3e5b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &379852027
 GameObject:
   m_ObjectHideFlags: 0
@@ -3576,7 +3596,7 @@ Transform:
   m_GameObject: {fileID: 2005602311}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 4.042326, y: 4.042326, z: 4.042326}
   m_Children:
   - {fileID: 1487575820}
   - {fileID: 1052054622}
@@ -3599,6 +3619,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 5
   characterFeet: {fileID: 1487575820}
+  jumpEffect: {fileID: 4235153113222250492, guid: aea0a8cfa68228c439371bd5c36a2008, type: 3}
 --- !u!114 &2005602317
 MonoBehaviour:
   m_ObjectHideFlags: 0
