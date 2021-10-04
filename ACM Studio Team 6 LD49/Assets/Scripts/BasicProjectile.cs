@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BasicProjectile : MonoBehaviour
 {
+    [SerializeField] float damage = 10;
     [SerializeField] float speed = 5;
     [SerializeField] float lifetimeSeconds = 5;
 
@@ -21,6 +22,12 @@ public class BasicProjectile : MonoBehaviour
             Destroy(this.gameObject);
 
         transform.Translate(transform.right * Time.deltaTime * speed);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        col.GetComponent<HealthStat>()?.DealDamage(damage);
+        Destroy(this.gameObject);
     }
 
 }
