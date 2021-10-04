@@ -5,8 +5,8 @@ using UnityEngine;
 public class enemyFly : MonoBehaviour
 {
     private float speed;
-    [SerializeField] Vector3[] positions;
-    [SerializeField] Vector3 startPos;
+    public Vector3[] positions;
+    private Vector3 startPos;
     [SerializeField] float attackTimer;
     public float countDown;
     private bool startTimer;
@@ -24,7 +24,13 @@ public class enemyFly : MonoBehaviour
         startTimer = true;
         attack = false;
         idle = true;
+        player = GameObject.Find("Player").transform;
+        startPos = transform.position;
+        positions[0] = transform.position;
+        positions[1] = transform.position;
+        positions[1].y = transform.position.y - 1;
     }
+
     // Update is called once per frame
     void Update()
     {
