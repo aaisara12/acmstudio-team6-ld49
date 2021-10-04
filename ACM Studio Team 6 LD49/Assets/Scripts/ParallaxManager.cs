@@ -9,7 +9,13 @@ public class ParallaxManager : MonoBehaviour
 
 
     [Header("Background")]
-    [SerializeField] GameObject background;
+    [SerializeField] GameObject firstBackground;
+    [SerializeField] GameObject secondBackground;
+    [SerializeField] Transform endTransform;
+    Vector3 startPosition;
+    GameObject mainBackground;
+    GameObject nextBackground;
+    float distanceBetweenBackgrounds;
 
     [Header("Foreground")]
     [SerializeField] Transform foregroundSpawnLevel;
@@ -23,15 +29,32 @@ public class ParallaxManager : MonoBehaviour
     void Awake()
     {
         nextSpawnTime = Time.time + maxForegroundElementSpawnInterval;
+        mainBackground = firstBackground;
+        nextBackground = secondBackground;
+
+        // Assumes that where the second background starts is where new backgrounds should be respawned
+        startPosition = secondBackground.transform.position;
+
+        distanceBetweenBackgrounds = secondBackground.transform.position.x - firstBackground.transform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
-        background.transform.Translate(Vector3.left * speed/parallaxFactor * Time.deltaTime);
+        firstBackground.transform.Translate(Vector3.left * speed/parallaxFactor * Time.deltaTime);
+        secondBackground.transform.Translate(Vector3.left * speed/parallaxFactor * Time.deltaTime);
         
         if(Time.time >= nextSpawnTime)
             SpawnForegroundElement();
+
+        if(mainBackground.transform.position.x <= endTransform.position.x)
+        {
+            mainBackground.transform.position = nextBackground.transform.position + (Vector3.right * distanceBetweenBackgrounds);
+
+            GameObject temp = mainBackground;
+            mainBackground = nextBackground;
+            nextBackground = temp;
+        }
 
     }
 
