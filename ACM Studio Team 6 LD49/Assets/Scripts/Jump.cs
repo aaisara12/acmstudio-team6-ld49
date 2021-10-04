@@ -16,7 +16,7 @@ public class Jump : MonoBehaviour
     
     
     // Calculate the jump speed needed to reach the specified jump height
-    float jumpSpeed => Mathf.Sqrt(2 * GRAVITY * jumpHeight);
+    float jumpSpeed => Mathf.Sqrt(2 * GRAVITY * rb.gravityScale * jumpHeight);
 
 
 
@@ -25,6 +25,7 @@ public class Jump : MonoBehaviour
     ///////////////
 
     [SerializeField] Transform characterFeet;
+    [SerializeField] ParticleSystem jumpEffect;
     Rigidbody2D rb;
 
 
@@ -82,6 +83,8 @@ public class Jump : MonoBehaviour
             // If it's been past the jump cooldown
             if(Time.time - lastJumpTime > jumpCooldown)
             {
+                ParticleSystem particleSystem = Instantiate<ParticleSystem>(jumpEffect, characterFeet.transform.position, characterFeet.transform.rotation);
+                Destroy(particleSystem, 1);
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 lastJumpTime = Time.time;
 
