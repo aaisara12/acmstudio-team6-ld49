@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 406732321946560649}
   - component: {fileID: 3247869772032594074}
   - component: {fileID: 3149355933653592150}
-  - component: {fileID: 2941506257087735546}
+  - component: {fileID: 8064715497646515800}
+  - component: {fileID: 5233425758068041063}
   m_Layer: 0
   m_Name: fallingObject
   m_TagString: Untagged
@@ -105,7 +106,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2941506257087735546
+--- !u!61 &8064715497646515800
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680866927572756470}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 0.5}
+    newSize: {x: 1, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.5}
+  m_EdgeRadius: 0
+--- !u!114 &5233425758068041063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,7 +141,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5680866927572756470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13aa0943b2f0a48eca990b8632834b0f, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d834fd5d102b2d48b127d283360ae16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deleteHeight: -5
