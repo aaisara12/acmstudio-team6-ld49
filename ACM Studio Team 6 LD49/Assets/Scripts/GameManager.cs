@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] float timeToSwitch = 5;
     float timeOfLastSwitch = 0;
     [SerializeField] GameMode _currentGameMode = GameMode.OFFICE;
+
+
+
     public GameMode currentGameMode
     {
         get {return _currentGameMode;}
@@ -36,6 +39,12 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
+    void OnDestroy()
+    {
+        //instance = null;
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -51,6 +60,7 @@ public class GameManager : MonoBehaviour
             timeOfLastSwitch = Time.time;
         }
     }
+
 
 }
 
