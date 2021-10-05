@@ -1555,7 +1555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitsToSpawn:
-  - {fileID: 3348118892843040912, guid: 99c1b68e89b2a894d9faa8c19012d87a, type: 3}
+  - {fileID: 7553478003217333487, guid: d6f9fe41ed2e18a4ab59a8a23fddd7de, type: 3}
   spawnTimer: 3
 --- !u!1 &809542248
 GameObject:
