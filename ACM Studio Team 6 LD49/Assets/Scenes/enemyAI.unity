@@ -571,6 +571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 2
   characterFeet: {fileID: 1998476382}
+  jumpEffect: {fileID: 4235153113222250492, guid: aea0a8cfa68228c439371bd5c36a2008, type: 3}
 --- !u!114 &1372165100
 MonoBehaviour:
   m_ObjectHideFlags: 0
