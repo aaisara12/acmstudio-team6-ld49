@@ -26,6 +26,8 @@ public class Jump : MonoBehaviour
 
     [SerializeField] Transform characterFeet;
     [SerializeField] ParticleSystem jumpEffect;
+    [SerializeField] Animator officePlayerAnimator;
+    [SerializeField] Animator fantasyPlayerAnimator;
     Rigidbody2D rb;
 
 
@@ -67,6 +69,8 @@ public class Jump : MonoBehaviour
         // Check if the player is touching the ground
         isGrounded = Physics2D.BoxCast(characterFeet.position, new Vector2(1, 0.01f), 0, Vector2.down, groundCheckDepth, LayerMask.GetMask("Ground"));
 
+        officePlayerAnimator.SetBool("isInAir", !isGrounded);
+        fantasyPlayerAnimator.SetBool("isInAir", !isGrounded);
     }
 
     void OnDrawGizmos()
@@ -84,7 +88,7 @@ public class Jump : MonoBehaviour
             if(Time.time - lastJumpTime > jumpCooldown)
             {
                 ParticleSystem particleSystem = Instantiate<ParticleSystem>(jumpEffect, characterFeet.transform.position, characterFeet.transform.rotation);
-                Destroy(particleSystem, 1);
+                Destroy(particleSystem.gameObject, 0.5f);
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 lastJumpTime = Time.time;
 
