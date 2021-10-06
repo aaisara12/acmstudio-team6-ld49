@@ -88,7 +88,7 @@ public class Jump : MonoBehaviour
             if(Time.time - lastJumpTime > jumpCooldown)
             {
                 ParticleSystem particleSystem = Instantiate<ParticleSystem>(jumpEffect, characterFeet.transform.position, characterFeet.transform.rotation);
-                Destroy(particleSystem, 1);
+                Destroy(particleSystem.gameObject, 0.5f);
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 lastJumpTime = Time.time;
 

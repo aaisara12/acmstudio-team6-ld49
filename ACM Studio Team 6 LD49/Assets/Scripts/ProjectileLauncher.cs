@@ -7,6 +7,7 @@ public class ProjectileLauncher : MonoBehaviour
     [SerializeField] GameObject projectile;
     [SerializeField] Transform shootDirection;
     [SerializeField] float maxShotsPerSecond = 5;
+    [SerializeField] Animator fantasyAnimator;
 
 
     float lastShotTime = 0;
@@ -14,10 +15,17 @@ public class ProjectileLauncher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButton(0) && Time.time - lastShotTime > (1/maxShotsPerSecond))
+        // This would be better decoupled, but once again not enough time :()
+        bool isTryingToShoot = Input.GetMouseButton(0);
+
+        if(isTryingToShoot && Time.time - lastShotTime > (1/maxShotsPerSecond))
         {
             Instantiate(projectile, shootDirection.position, shootDirection.rotation);
             lastShotTime = Time.time;
         }
+
+        // This should definitely be decoupled as a separate animator controller script
+        fantasyAnimator.SetBool("isShooting", isTryingToShoot);
+        
     }
 }
