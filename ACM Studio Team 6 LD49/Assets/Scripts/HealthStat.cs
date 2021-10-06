@@ -6,6 +6,7 @@ public class HealthStat : MonoBehaviour
 {
     [SerializeField] float maxHealth = 100;
     [SerializeField] float currentHealth = 100;
+    [SerializeField] ParticleSystem deathEffect;
 
     public event System.Action<float> OnHealthPercentChanged;
     public event System.Action OnDamaged;
@@ -32,6 +33,9 @@ public class HealthStat : MonoBehaviour
         {
             currentHealth = 0;
             OnDeath?.Invoke();
+            
+            ParticleSystem particleSystem = Instantiate<ParticleSystem>(deathEffect, transform.position, transform.rotation);
+            Destroy(particleSystem, 0.5f);
             Destroy(this.gameObject);
         }
 

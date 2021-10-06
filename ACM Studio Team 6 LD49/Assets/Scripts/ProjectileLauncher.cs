@@ -15,6 +15,10 @@ public class ProjectileLauncher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Super lazy way of preventing player from shooting when not in fantasy mode
+        if(GameManager.instance.currentGameMode != GameMode.FANTASY) {return;}
+
+
         // This would be better decoupled, but once again not enough time :()
         bool isTryingToShoot = Input.GetMouseButton(0);
 
