@@ -37,11 +37,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-    }
-
-    void OnDestroy()
-    {
-        //instance = null;
+        currentGameMode = GameMode.OFFICE;
+        timeOfLastSwitch = Time.time;
     }
 
 

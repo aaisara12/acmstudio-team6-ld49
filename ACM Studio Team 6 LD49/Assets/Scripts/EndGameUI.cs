@@ -23,7 +23,7 @@ public class EndGameUI : MonoBehaviour
 
     public void Replay()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
     }
 
     public void Quit()
